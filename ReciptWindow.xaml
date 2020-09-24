@@ -1,0 +1,141 @@
+﻿<Window x:Class="TTTapp.RW.ReciptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TTTapp.RW"
+        mc:Ignorable="d"
+        Title="TTT-StoreApp" Height="600" Width="800" Icon="Properties/ttt.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <!-- Nuolipainikkeet-->
+        <Style TargetType="Button" x:Key="ArrowButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="MyContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="LightGray" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--Painikkeet -->
+        <Style TargetType="Button" x:Key="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="#FF0053E4" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="MyContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FF5694FF" />
+                    <Setter Property="Foreground" Value="#FF6E6E6E" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF226AE8" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FF00307A" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- DataGrid tyylit -->
+        <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
+
+            <Setter Property="RowHeaderWidth" Value="0" />
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource ColumnHeaderStyle1}" />
+            <Setter Property="CellStyle" Value="{DynamicResource CellStyle1}" />
+        </Style>
+        <!-- DG otsikkotyylit -->
+        <Style x:Key="ColumnHeaderStyle1" TargetType="DataGridColumnHeader">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Background" Value="#FF00307A" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="3,2,2,2" />
+        </Style>
+        <!-- DG solutyylit-->
+        <Style x:Key="CellStyle1" TargetType="DataGridCell">
+            <Setter Property="Height" Value="38" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Background" Value="#FF226AE8" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="0.1" />
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="800" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Tilauksen esikatselu" FontStyle="Italic" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="34" Height="70" Width="794" Background="#FF1B4FFF" Foreground="White" Margin="0,0,6,0" />
+        <WrapPanel Margin="5,340,445,0">
+            <Label Margin="0, 0, 170, 0" Foreground="Black" Width="150" Height="28" FontSize="12">Olen lukenut Tilausehdot
+            </Label>
+            <CheckBox x:Name="chbAgree1" Height="15" Width="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0, 0, 0, 0" />
+            <Label Content="Olen tarkastanut tilaustietoni" Margin="0, 0, 158, 0" Foreground="Black" Width="162" Height="28" FontSize="12" />
+            <CheckBox x:Name="chbAgree2" Height="15" Width="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0, 0, 0, 0" />
+            <Label Content="Suostun, että tietojani käytetään tilauksen toimittamiseen" Margin="0, 0, 0, 0" Foreground="Black" Width="320" Height="28" FontSize="12" />
+            <CheckBox x:Name="chbAgree3" Height="15" Width="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0, 0, 0, 0" />
+            <Button Style="{StaticResource Button}" x:Name="btnYes" Height="40" Width="125" FontSize="18" Content="Tilaa tuotteet" Click="btnYes_Click" Margin="125, 15, 0 ,0" />
+            <Button Style="{StaticResource Button}" Height="25" Width="80" Foreground="White" FontSize="12" Content="Peruuta" Margin="150, 10, 0, 0"  Click="Button_Click" />
+        </WrapPanel>
+
+        <Label Content="Tilauksesi tuotteet" Margin="484,70,123,467" FontSize="22" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" Height="34" Width="193" ></Label>
+        <DataGrid Style="{StaticResource DataGridStyle1}" DataContext="{Binding Item}" ColumnWidth="*" x:Name="dgOrder" FontSize="24" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="462" Margin="360,109,0,0" VerticalAlignment="Top" Width="434" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserResizeRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tuote" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Määrä" Binding="{Binding Amount}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Hinta" Binding="{Binding Price}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Vertical" Background="#FF1B4FFF" Margin="0,70,440,249">
+        <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Foreground="White" Text="Tilaustiedot" Margin="125,30,0,30" Width="108" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="#66151619"  Margin="0, 0 , 0 ,2">
+                <Label FontSize="14"  Foreground="White" Margin="15 ,0, 0, 0">Tilaaja:</Label>
+                <TextBlock FontSize="14"  x:Name="txbName" Foreground="White" Width="220"  Text="{Binding Name}" Margin="50,0, 0, 0" Height="18" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0, 0 , 0 ,2">
+                <Label FontSize="14"  Foreground="White" Margin="15 ,0, 0, 0">Osoite:</Label>
+                <TextBlock FontSize="14"  x:Name="txbAddr" Foreground="White"  Width="220" Text="{Binding Address}" Margin="50, 0, 15, 0" Height="18" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Background="#66151619" Margin="0, 0 , 0 ,2">
+                <Label FontSize="14"  Foreground="White" Margin="15 ,0, 0, 0">Sähköposti:</Label>
+                <TextBlock FontSize="14"  x:Name="txbEmail" Foreground="White"  Width="220" Text="{Binding Email}" Margin="22, 0, 15, 0" Height="18" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0, 0 , 0 ,5">
+                <Label FontSize="14" Foreground="White" Margin="15 ,0, 0, 0">Puhelin:</Label>
+                <TextBlock FontSize="14"  x:Name="txbPhone" Foreground="White"  Width="220" Text="{Binding Phone}" Margin="45, 0, 0, 0" Height="18" />
+            </StackPanel>
+        </StackPanel>
+        <!--<Image Name="imgContact" Stretch="Fill" HorizontalAlignment="Left" Height="308" Margin="0,70,0,0" VerticalAlignment="Top" Width="360" />-->
+    </Grid>
+</Window>

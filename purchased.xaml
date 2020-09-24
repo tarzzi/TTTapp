@@ -1,0 +1,16 @@
+﻿<Window x:Class="TTTapp.Purchase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TTTapp"
+        mc:Ignorable="d"
+        Title="Kiitos tilauksestasi" Height="200" Width="300" Background="#FF1B4FFF" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel>
+            <Label Foreground="White" HorizontalAlignment="Center" FontSize="22" Margin="0, 20,0,5" Content="Tilauksesi on vastaanotettu." />
+            <Label Foreground="White" HorizontalAlignment="Center" FontSize="22" Content="Kiitos että asioit meillä!" />
+            <Button x:Name="btnOk" FontSize="16" Background="White" Margin="0, 30,0,5" BorderBrush="Black" BorderThickness="1" Width="50" Height="40" Content="Ok" Click="btnOk_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
